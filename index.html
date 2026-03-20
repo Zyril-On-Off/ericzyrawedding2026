@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ericson & Zyra | Wedding</title>
     <link rel="icon" type="image/x-icon" href="logo.ico">
-    <!-- Preload hero image so it's ready instantly -->
+    <!-- Preload the hero image — biggest LCP element -->
     <link rel="preload" as="image" href="047A7707-1.jpg" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- font-display=swap means text shows immediately in fallback font while Google Fonts loads -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Italiana&family=Josefin+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
         rel="stylesheet">
@@ -1915,6 +1916,48 @@
             min-width: unset;
             max-width: unset;
         }
+
+        /* ─── PERFORMANCE: strip expensive GPU effects on mobile ─── */
+        @media (max-width:768px) {
+
+            /* Remove backdrop-filter blurs — GPU heavy on mobile */
+            .navbar.scrolled,
+            .gallery-btn,
+            .slide-arrow,
+            .attire-carousel-btn,
+            .venue-map-btn,
+            .rsvp-form-card {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            /* Disable parallax on mobile — causes jank */
+            .hero-bg,
+            .cdown-bg {
+                will-change: auto;
+                transform: none !important;
+            }
+
+            /* Reduce animation complexity */
+            .slide img {
+                transition: none;
+            }
+
+            .attire-slides {
+                transition: transform .3s ease;
+            }
+        }
+
+        /* Respect reduce-motion preference */
+        @media (prefers-reduced-motion:reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
     </style>
 </head>
 
@@ -1965,7 +2008,7 @@
     <!-- 1. HERO -->
     <section class="hero" id="hero">
         <div class="hero-bg" id="heroBg">
-            <img src="047A7707-1.jpg" alt="Ericson and Zyra" fetchpriority="high" loading="eager" decoding="async">
+            <img src="047A7707-1.jpg" alt="Ericson and Zyra" fetchpriority="high" loading="eager" decoding="sync">
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
@@ -1974,7 +2017,6 @@
                 <span class="amp">&amp;</span>
                 <em>Zyra</em>
             </h1>
-            <p class="hero-date">MAY 28, 2026</p>
         </div>
         <div class="hero-scroll">
             <span>Scroll</span>
@@ -1982,7 +2024,23 @@
         </div>
     </section>
 
-    <!-- 2. COUNTDOWN -->
+    <!-- 2. GRACE / INVITATION TEXT -->
+    <div class="grace-section" id="grace">
+        <div class="grace-inner" data-aos="fade-up">
+            <p class="grace-text">
+                By the grace of God and with the blessing of our families
+            </p>
+            <p class="grace-text" style="margin-top:28px;">
+                We,<br>
+                <span class="grace-names">Ericson &amp; Zyra</span>
+                request the honor of your presence<br>
+                for a celebration of love, friendship, and family<br>
+                as we unite in marriage.
+            </p>
+        </div>
+    </div>
+
+    <!-- 3. COUNTDOWN -->
     <div class="countdown-wrap" id="countdown-section">
         <div class="cdown-bg" id="parallaxBg"></div>
         <div class="cdown-overlay"></div>
@@ -2012,22 +2070,6 @@
         </div>
     </div>
 
-    <!-- 3. GRACE / INVITATION TEXT -->
-    <div class="grace-section" id="grace">
-        <div class="grace-inner" data-aos="fade-up">
-            <p class="grace-text">
-                By the grace of God and with the blessing of our families
-            </p>
-            <p class="grace-text" style="margin-top:28px;">
-                We,<br>
-                <span class="grace-names">Ericson &amp; Zyra</span>
-                request the honor of your presence<br>
-                for a celebration of love, friendship, and family<br>
-                as we unite in marriage.
-            </p>
-        </div>
-    </div>
-
     <!-- 4. SAVE THE DATE -->
     <div class="savedate-section" id="savedate">
         <div class="savedate-inner" data-aos="fade-up">
@@ -2041,14 +2083,14 @@
     <!-- 5. GALLERY (SLIDESHOW) -->
     <section class="gallery-section" id="gallery">
         <div class="slideshow-wrap">
-            <div class="slide active"><img loading="lazy" src="047A7823-1.jpg" alt="Romance"></div>
-            <div class="slide"><img loading="lazy" src="047A6109-1.jpg" alt="Coastal"></div>
-            <div class="slide"><img loading="lazy" src="047A6244-1.jpg" alt="Romantic"></div>
-            <div class="slide"><img loading="lazy" src="047A7352-1.jpg" alt="Walking"></div>
-            <div class="slide"><img loading="lazy" src="047A7217-1.jpg" alt="Shore Walk"></div>
-            <div class="slide"><img loading="lazy" src="047A7846-1.jpg" alt="Palm Grove"></div>
-            <div class="slide"><img loading="lazy" src="047A6132-1.jpg" alt="Portrait"></div>
-            <div class="slide"><img loading="lazy" src="IMG_1459.JPG" alt="Beach Hug"></div>
+            <div class="slide active"><img src="047A7823-1.jpg" alt="Romance" loading="eager" decoding="async"></div>
+            <div class="slide"><img src="047A6109-1.jpg" loading="lazy" decoding="async" alt="Coastal"></div>
+            <div class="slide"><img src="047A6244-1.jpg" loading="lazy" decoding="async" alt="Romantic"></div>
+            <div class="slide"><img src="047A7352-1.jpg" loading="lazy" decoding="async" alt="Walking"></div>
+            <div class="slide"><img src="047A7217-1.jpg" loading="lazy" decoding="async" alt="Shore Walk"></div>
+            <div class="slide"><img src="047A7846-1.jpg" loading="lazy" decoding="async" alt="Palm Grove"></div>
+            <div class="slide"><img src="047A6132-1.jpg" loading="lazy" decoding="async" alt="Portrait"></div>
+            <div class="slide"><img src="IMG_1459.JPG" loading="lazy" decoding="async" alt="Beach Hug"></div>
 
             <div class="slide-overlay">
                 <div class="slide-text" data-aos="fade-up">
@@ -2082,37 +2124,37 @@
             <span class="gm-close" id="closeGallery">&times;</span>
         </div>
         <div class="gm-grid">
-            <div class="gm-item"><img loading="lazy" src="047A7823-1.jpg" alt="Romance">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="047A7823-1.jpg" alt="Romance">
                 <div class="gm-item-ov"><span>Romance</span></div>
             </div>
-            <div class="gm-item"><img loading="lazy" src="047A6109-1.jpg" alt="Coastal">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="047A6109-1.jpg" alt="Coastal">
                 <div class="gm-item-ov"><span>Coastal</span></div>
             </div>
-            <div class="gm-item"><img loading="lazy" src="047A6244-1.jpg" alt="Together">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="047A6244-1.jpg" alt="Together">
                 <div class="gm-item-ov"><span>Together</span></div>
             </div>
-            <div class="gm-item"><img loading="lazy" src="047A7352-1.jpg" alt="Walking">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="047A7352-1.jpg" alt="Walking">
                 <div class="gm-item-ov"><span>Walking</span></div>
             </div>
-            <div class="gm-item"><img loading="lazy" src="047A7217-1.jpg" alt="Shoreline">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="047A7217-1.jpg" alt="Shoreline">
                 <div class="gm-item-ov"><span>Shoreline</span></div>
             </div>
-            <div class="gm-item"><img loading="lazy" src="047A7846-1.jpg" alt="Adventure">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="047A7846-1.jpg" alt="Adventure">
                 <div class="gm-item-ov"><span>Adventure</span></div>
             </div>
-            <div class="gm-item"><img loading="lazy" src="047A6132-1.jpg" alt="Portrait">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="047A6132-1.jpg" alt="Portrait">
                 <div class="gm-item-ov"><span>Portrait</span></div>
             </div>
-            <div class="gm-item"><img loading="lazy" src="IMG_1459.JPG" alt="Love">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="IMG_1459.JPG" alt="Love">
                 <div class="gm-item-ov"><span>Love</span></div>
             </div>
-            <div class="gm-item"><img loading="lazy" src="IMG_1460.JPG" alt="Joy">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="IMG_1460.JPG" alt="Joy">
                 <div class="gm-item-ov"><span>Joy</span></div>
             </div>
-            <div class="gm-item"><img src="047A7707-1.jpg" alt="Forever">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="047A7707-1.jpg" alt="Forever">
                 <div class="gm-item-ov"><span>Forever</span></div>
             </div>
-            <div class="gm-item"><img loading="lazy" src="047A6576-1.jpg" alt="Always">
+            <div class="gm-item"><img loading="lazy" decoding="async" src="047A6576-1.jpg" alt="Always">
                 <div class="gm-item-ov"><span>Always</span></div>
             </div>
         </div>
@@ -2123,7 +2165,7 @@
         <span class="lb-close" id="lbClose">&times;</span>
         <span class="lb-nav lb-prev" id="lbPrev">&#10094;</span>
         <span class="lb-nav lb-next" id="lbNext">&#10095;</span>
-        <img loading="lazy" src="" alt="" class="lb-img" id="lbImg">
+        <img src="" alt="" class="lb-img" id="lbImg">
     </div>
 
     <!-- 6. VENUE -->
@@ -2354,9 +2396,12 @@
                     <!-- carousel -->
                     <div class="attire-carousel" id="attire-carousel-1">
                         <div class="attire-slides" id="attire-slides-1">
-                            <div class="attire-slide"><img loading="lazy" src="inspo1a.png" alt="Sponsor look 1"></div>
-                            <div class="attire-slide"><img loading="lazy" src="inspo1b.png" alt="Sponsor look 2"></div>
-                            <div class="attire-slide"><img loading="lazy" src="inspo1c.png" alt="Sponsor look 3"></div>
+                            <div class="attire-slide"><img src="inspo1a.png" loading="lazy" decoding="async"
+                                    alt="Sponsor look 1"></div>
+                            <div class="attire-slide"><img src="inspo1b.png" loading="lazy" decoding="async"
+                                    alt="Sponsor look 2"></div>
+                            <div class="attire-slide"><img src="inspo1c.png" loading="lazy" decoding="async"
+                                    alt="Sponsor look 3"></div>
                         </div>
                         <button class="attire-carousel-btn attire-cbtn-prev" onclick="attireSlide('1',-1)">
                             <svg viewBox="0 0 24 24">
@@ -2407,9 +2452,12 @@
                     <!-- carousel -->
                     <div class="attire-carousel" id="attire-carousel-2">
                         <div class="attire-slides" id="attire-slides-2">
-                            <div class="attire-slide"><img loading="lazy" src="inspo2a.png" alt="Guest look 1"></div>
-                            <div class="attire-slide"><img loading="lazy" src="inspo2b.png" alt="Guest look 2"></div>
-                            <div class="attire-slide"><img loading="lazy" src="inspo2c.png" alt="Guest look 3"></div>
+                            <div class="attire-slide"><img src="inspo2a.png" loading="lazy" decoding="async"
+                                    alt="Guest look 1"></div>
+                            <div class="attire-slide"><img src="inspo2b.png" loading="lazy" decoding="async"
+                                    alt="Guest look 2"></div>
+                            <div class="attire-slide"><img src="inspo2c.png" loading="lazy" decoding="async"
+                                    alt="Guest look 3"></div>
                         </div>
                         <button class="attire-carousel-btn attire-cbtn-prev" onclick="attireSlide('2',-1)">
                             <svg viewBox="0 0 24 24">
@@ -2497,7 +2545,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1100, once: true, offset: 80, easing: 'ease-out-cubic' });
+        AOS.init({ duration: 900, once: true, offset: 60, easing: 'ease-out-cubic', disable: window.innerWidth < 768 ? 'mobile' : false });
 
 
         const navbar = document.getElementById('navbar');
