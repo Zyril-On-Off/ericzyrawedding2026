@@ -1260,9 +1260,11 @@
         }
 
         .ent-cross {
-            font-size: .8em;
-            opacity: .7;
-            vertical-align: middle;
+            font-size: .75em;
+            opacity: .65;
+            vertical-align: super;
+            font-family: var(--fb);
+            font-weight: 300;
         }
 
         .ent-row {
@@ -1471,46 +1473,53 @@
             color: var(--forest);
         }
 
-        /* Modern palette strip */
+        /* Palette circles */
         .attire-hpal {
             display: flex;
             justify-content: center;
-            align-items: stretch;
-            gap: 0;
-            margin-top: 18px;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 3px 12px rgba(58, 79, 53, .15);
-            background: var(--s1);
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .attire-hpal-group {
             display: flex;
+            gap: 8px;
+            align-items: center;
         }
 
         .attire-hpal-sep {
-            width: 2px;
-            background: rgba(255, 255, 255, .4);
+            width: 1px;
+            height: 24px;
+            background: rgba(58, 79, 53, .2);
+            margin: 0 6px;
         }
 
         .hp-dot {
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
             flex-shrink: 0;
-            border-radius: 0;
+            transition: transform .2s ease;
+        }
+
+        .hp-dot:hover {
+            transform: scale(1.15);
         }
 
         .hp-s {
+            width: 20px;
+            height: 20px;
+        }
+
+        .hp-m {
             width: 28px;
             height: 28px;
         }
 
-        .hp-m {
+        .hp-l {
             width: 36px;
             height: 36px;
-        }
-
-        .hp-l {
-            width: 44px;
-            height: 44px;
         }
 
         .attire-note {
@@ -1971,9 +1980,6 @@
     <audio id="bgMusic2" preload="none">
         <source src="bgmusic2.mp3" type="audio/mpeg">
     </audio>
-    <audio id="bgMusic3" preload="none">
-        <source src="bgmusic3.mp3" type="audio/mpeg">
-    </audio>
 
     <!-- Music Tab -->
     <div class="music-tab" id="musicTab">
@@ -2077,6 +2083,8 @@
             <p class="savedate-detail">MAY 28, 2026</p>
             <p class="savedate-sub">12:30 PM</p>
             <p class="savedate-location">Our Lady of the Pillar Parish, Cauayan City, Isabela</p>
+            <p class="savedate-location" style="margin-top:8px;">Reception follows at Isabela Convention Center (ICON)
+            </p>
         </div>
     </div>
 
@@ -2181,9 +2189,9 @@
                 <div class="venue-panel-content">
                     <h3 class="venue-panel-title">The Ceremony</h3>
                     <p class="venue-panel-time">12:30 PM · May 28, 2026</p>
-                    <p class="venue-panel-addr">Our Lady of the Pillar Parish<br>San Fermin, Cauayan City, Isabela</p>
-                    <a href="https://www.google.com/maps/dir//Our+Lady+of+the+Pillar+Parish+Church,+WQMF%2B6XG,+Cauayan+City,+Isabela/@16.9443328,121.7626112,14z"
-                        target="_blank" class="venue-map-btn">
+                    <p class="venue-panel-addr">Our Lady of the Pillar Parish Church<br>District III, Cauayan City,
+                        Isabela</p>
+                    <a href="https://maps.app.goo.gl/pillar-parish-cauayan" target="_blank" class="venue-map-btn">
                         <svg viewBox="0 0 24 24">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                             <circle cx="12" cy="10" r="3" />
@@ -2198,9 +2206,8 @@
                 <div class="venue-panel-content">
                     <h3 class="venue-panel-title">The Reception</h3>
                     <p class="venue-panel-time">Follows immediately after</p>
-                    <p class="venue-panel-addr">Isabela Convention Center (ICON)<br>San Fermin, Cauayan City, Isabela
-                    </p>
-                    <a href="https://www.google.com/maps?daddr=WQX4%2BCJ2+San+Fermin,+Cauayan+City,+Isabela"
+                    <p class="venue-panel-addr">ICON Isabela Convention Center<br>San Fermin, Cauayan City, Isabela</p>
+                    <a href="https://www.google.com/maps/search/Icon+Isabela+Convention+Center+San+Fermin+Cauayan+City"
                         target="_blank" class="venue-map-btn">
                         <svg viewBox="0 0 24 24">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
@@ -2238,12 +2245,11 @@
                 <div class="ent-col">
                     <div class="ent-col-lbl">Parents of the Groom</div>
                     <div class="ent-names">
-                        Mrs. Marissa V. Viloria<br>
-                        Mr. Emilio S. Viloria <span class="ent-cross">✝</span>
+                        Mrs. Marisa V. Viloria<br>
+                        Mr. Emilio S. Viloria <span class="ent-cross">+</span>
                     </div>
                 </div>
             </div>
-
 
             <!-- Principal Sponsors -->
             <div class="ent-group-hdr">
@@ -2254,24 +2260,38 @@
                 <div class="ent-col">
                     <div class="ent-col-lbl">Ninong</div>
                     <div class="ent-names">
-                        Mr. Randy Rosita<br>
+                        Mr. Randy Rosila<br>
                         Mr. Maverick Angelo Balayan<br>
                         Mr. Vincent Roces<br>
                         Engr. Rolando Perez<br>
-                        Rev. Fr. Rommel Semira
+                        Rev. Fr. Rommel Semira<br>
+                        Mr. Anthony Galangam<br>
+                        Mr. Jonel Galiza<br>
+                        Mr. Jones Tomas<br>
+                        Mr. Danilo Padua<br>
+                        Mr. Jojie Miguel<br>
+                        Mr. Timoteo Melchor
                     </div>
                 </div>
                 <div class="ent-col">
                     <div class="ent-col-lbl">Ninang</div>
                     <div class="ent-names">
-                        Mrs. Mylen Rosita<br>
+                        Mrs. Mylen Rosila<br>
                         Mrs. Gee Anne Balayan<br>
                         Mrs. Gemma Roces<br>
-                        Mrs. Angie Perez
+                        Mrs. Angelita Perez<br>
+                        Mrs. Gloria Perez<br>
+                        Mrs. Wilma Galangam<br>
+                        Mrs. Ferry Grace Galiza<br>
+                        Mrs. Michelle Tomas<br>
+                        Mrs. Rosalie Padua<br>
+                        Mrs. Rosemarie Miguel<br>
+                        Mrs. Guada Melchor<br>
+                        Mrs. Mariched Cauilan<br>
+                        Ms. Maribeth Dela Peña
                     </div>
                 </div>
             </div>
-
 
             <!-- Secondary Sponsors -->
             <div class="ent-group-hdr">
@@ -2301,7 +2321,7 @@
                 <div class="ent-item">
                     <span class="ent-role">Veil</span>
                     <div class="ent-sub">To clothe us as one</div>
-                    <div class="ent-who">Redge Dizon<br>Krizia Mae Revilla</div>
+                    <div class="ent-who">Redge Dizon<br>Krizia Mei Revilla</div>
                 </div>
             </div>
 
@@ -2314,28 +2334,35 @@
                 </div>
             </div>
 
-
             <!-- Groomsmen & Bridesmaids -->
             <div class="ent-row" style="margin-bottom:28px;">
                 <div class="ent-item" style="min-width:150px;">
                     <span class="ent-role">Groomsmen</span>
                     <div class="ent-sub">To lead us in our way</div>
-                    <div class="ent-who">Patrick Malano<br>Robie Ligon<br>Jericho Allan Cabauatan<br>William Gerald
-                        Dalupang<br>Terence Gil Dalog<br>Zyril Evangelista</div>
+                    <div class="ent-who">
+                        Zyril Evangelista<br>
+                        Terence Gil Dalog<br>
+                        Jericho Jake Llantada<br>
+                        Patrick Malano<br>
+                        Robie Ligon<br>
+                        William Gerald Dalupang
+                    </div>
                 </div>
                 <div class="ent-item" style="min-width:150px;">
                     <span class="ent-role">Bridesmaids</span>
                     <div class="ent-sub">To lead us in our way</div>
-                    <div class="ent-who">Jessa Mae Dumawal<br>Nikki Mamauad<br>Shaine Melchor<br>Quimberly
-                        Ranchez<br>Nicole Gae Gammad<br>Julia Orani</div>
+                    <div class="ent-who">
+                        Shaine Melchor<br>
+                        Nicole Gae Gammad<br>
+                        Julia Orani<br>
+                        Jessa Mae Dumawal<br>
+                        Nikki Mamuad<br>
+                        Quimberly Ranchez
+                    </div>
                 </div>
             </div>
 
-
-            <!-- Ring & Coin Bearer — always 2-col grid -->
-            <div class="ent-group-hdr" style="margin-top:0;">
-                <div class="ent-group-sub" style="margin-bottom:14px;"></div>
-            </div>
+            <!-- Ring & Coin Bearer -->
             <div class="ent-row-bearers" style="margin-bottom:20px;">
                 <div class="ent-item">
                     <span class="ent-role">Ring Bearer</span>
@@ -2437,10 +2464,19 @@
                     <!-- palette -->
                     <div class="attire-hpal">
                         <div class="attire-hpal-group">
+                            <div class="hp-dot hp-s" style="background:#6b6348;"></div>
+                            <div class="hp-dot hp-m" style="background:#8c7f5e;"></div>
+                            <div class="hp-dot hp-l" style="background:#a89b7a;"></div>
+                            <div class="hp-dot hp-m" style="background:#c4b89a;"></div>
+                            <div class="hp-dot hp-s" style="background:#ddd3b8;"></div>
+                        </div>
+                        <div class="attire-hpal-sep"></div>
+                        <div class="attire-hpal-group">
+                            <div class="hp-dot hp-s" style="background:#4a5c3e;"></div>
                             <div class="hp-dot hp-m" style="background:#758467;"></div>
-                            <div class="hp-dot hp-m" style="background:#819171;"></div>
-                            <div class="hp-dot hp-m" style="background:#9CAF88;"></div>
-                            <div class="hp-dot hp-m" style="background:#CBD5C0;"></div>
+                            <div class="hp-dot hp-l" style="background:#9CAF88;"></div>
+                            <div class="hp-dot hp-m" style="background:#c0ceb5;"></div>
+                            <div class="hp-dot hp-s" style="background:#dde6d7;"></div>
                         </div>
                     </div>
                 </div>
@@ -2493,17 +2529,19 @@
                     <!-- palette — both -->
                     <div class="attire-hpal">
                         <div class="attire-hpal-group">
-                            <div class="hp-dot hp-m" style="background:#758467;"></div>
-                            <div class="hp-dot hp-m" style="background:#819171;"></div>
-                            <div class="hp-dot hp-m" style="background:#9CAF88;"></div>
-                            <div class="hp-dot hp-m" style="background:#CBD5C0;"></div>
+                            <div class="hp-dot hp-s" style="background:#6b6348;"></div>
+                            <div class="hp-dot hp-m" style="background:#8c7f5e;"></div>
+                            <div class="hp-dot hp-l" style="background:#a89b7a;"></div>
+                            <div class="hp-dot hp-m" style="background:#c4b89a;"></div>
+                            <div class="hp-dot hp-s" style="background:#ddd3b8;"></div>
                         </div>
                         <div class="attire-hpal-sep"></div>
                         <div class="attire-hpal-group">
-                            <div class="hp-dot hp-m" style="background:#4a4035;"></div>
-                            <div class="hp-dot hp-m" style="background:#7a6e5f;"></div>
-                            <div class="hp-dot hp-m" style="background:#a89b8a;"></div>
-                            <div class="hp-dot hp-m" style="background:#cfc5b5;"></div>
+                            <div class="hp-dot hp-s" style="background:#4a5c3e;"></div>
+                            <div class="hp-dot hp-m" style="background:#758467;"></div>
+                            <div class="hp-dot hp-l" style="background:#9CAF88;"></div>
+                            <div class="hp-dot hp-m" style="background:#c0ceb5;"></div>
+                            <div class="hp-dot hp-s" style="background:#dde6d7;"></div>
                         </div>
                     </div>
                 </div>
@@ -2591,8 +2629,7 @@
         const playlist = [
             document.getElementById('bgMusic'),
             document.getElementById('bgMusic1'),
-            document.getElementById('bgMusic2'),
-            document.getElementById('bgMusic3')
+            document.getElementById('bgMusic2')
         ];
         let currentTrack = 0;
         let musicStarted = false;
