@@ -7,7 +7,7 @@
     <!-- Social sharing preview (Facebook, Instagram, Messenger, etc.) -->
     <meta property="og:title" content="Ericson & Zyra — May 28, 2026">
     <meta property="og:description" content="Join us as we celebrate our wedding. Our Lady of the Pillar Parish · Isabela Convention Center">
-    <meta property="og:image" content="https://ericzyrawedding2026.netlify.app/047A7707-1.jpg">
+    <meta property="og:image" content="https://ericzyrawedding2026.netlify.app/meta.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://ericzyrawedding2026.netlify.app/">
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ericson & Zyra — May 28, 2026">
     <meta name="twitter:description" content="Join us as we celebrate our wedding.">
-    <meta name="twitter:image" content="https://ericzyrawedding2026.netlify.app/047A7707-1.jpg">
+    <meta name="twitter:image" content="https://ericzyrawedding2026.netlify.app/meta.jpg">
     <link rel="icon" type="image/x-icon" href="logo.ico">
     <!-- Preload the hero image — biggest LCP element -->
     <link rel="preload" as="image" href="047A7707-1.jpg" fetchpriority="high">
@@ -694,6 +694,36 @@
     }
     .ent-row-bearers .ent-item { min-width:unset; max-width:unset; }
 
+    /* ─── SNAP & SHARE ─── */
+    .snapshare-section {
+        background: var(--s5);
+        padding: 80px 8%;
+        text-align: center;
+    }
+    .snapshare-inner { max-width: 540px; margin: 0 auto; }
+    .snapshare-eyebrow {
+        font-family: var(--fb); font-size: .62rem; letter-spacing: 6px;
+        text-transform: uppercase; color: var(--s1); margin-bottom: 10px;
+    }
+    .snapshare-title {
+        font-family: var(--fv); font-size: clamp(2rem, 6vw, 3.2rem);
+        color: var(--forest); margin-bottom: 16px;
+    }
+    .snapshare-text {
+        font-family: var(--fs); font-size: 1rem; font-style: italic;
+        color: var(--muted); margin-bottom: 32px; line-height: 1.8;
+    }
+    .snapshare-btn {
+        display: inline-flex; align-items: center; gap: 10px;
+        font-family: var(--fb); font-size: .72rem; letter-spacing: 3px;
+        text-transform: uppercase; color: var(--ivory);
+        background: var(--s1); padding: 14px 36px;
+        text-decoration: none; border-radius: 3px;
+        transition: background .3s ease, transform .3s ease;
+        box-shadow: 0 4px 20px rgba(58,79,53,.2);
+    }
+    .snapshare-btn:hover { background: var(--forest); transform: translateY(-2px); }
+
     /* ─── PERFORMANCE: strip expensive GPU effects on mobile ─── */
     @media (max-width:768px) {
         /* Remove backdrop-filter blurs — GPU heavy on mobile */
@@ -1243,6 +1273,19 @@
 </section>
 
 <!-- FOOTER -->
+<!-- SNAP & SHARE -->
+<section class="snapshare-section">
+    <div class="snapshare-inner" data-aos="fade-up">
+        <p class="snapshare-eyebrow">Join the Celebration</p>
+        <h2 class="snapshare-title">Snap &amp; Share</h2>
+        <p class="snapshare-text">Capture your favourite moments with our wedding filters and frames.</p>
+        <a href="snapnshare.html" class="snapshare-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.5"/><path d="M6.5 2h11l2 3H22a1 1 0 011 1v13a1 1 0 01-1 1H2a1 1 0 01-1-1V6a1 1 0 011-1h2.5L6.5 2z"/></svg>
+            Open Snap &amp; Share
+        </a>
+    </div>
+</section>
+
 <footer>
     <img src="logo.png" alt="E & Z" class="ft-logo">
     <h2 class="ft-names">Ericson &amp; Zyra</h2>
